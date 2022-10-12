@@ -89,7 +89,9 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	
 	private static final HashMap<NodePortTuple, PortDesc> portDesc = new HashMap<>();
 
-
+	public int  m = 7;					// number of BS
+	public int k = 6;					// number of eigenvalues need to record
+	public long[] C = new long[m];		// Current eigenvalue matrix (mx1)
 
 	/**
 	 * Run periodically to collect all port statistics. This only collects
@@ -175,8 +177,14 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 //			                }	                	
 		                	
 			                try {
-			                	File file = new File("/home/cuong/FIL/new_port_stats.csv");
+			                	File file = new File("/home/cuong/FIL/port1_stats.csv");
 			                	File file2 = new File("/home/cuong/FIL/port2_stats.csv");
+			                	File file3 = new File("/home/cuong/FIL/port3_stats.csv");
+			                	File file4 = new File("/home/cuong/FIL/port4_stats.csv");
+			                	File file5 = new File("/home/cuong/FIL/port5_stats.csv");
+			                	File file6 = new File("/home/cuong/FIL/port6_stats.csv");
+			                	File file7 = new File("/home/cuong/FIL/port7_stats.csv");
+			                	
 			                	FileWriter fw = new FileWriter(file, true);
 			                	BufferedWriter bw = new BufferedWriter(fw);
 			                	PrintWriter pw = new PrintWriter(bw);
@@ -184,16 +192,63 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 			                	FileWriter fw2 = new FileWriter(file2, true);
 			                	BufferedWriter bw2 = new BufferedWriter(fw2);
 			                	PrintWriter pw2 = new PrintWriter(bw2);
+			                	
+			                	FileWriter fw3 = new FileWriter(file3, true);
+			                	BufferedWriter bw3 = new BufferedWriter(fw3);
+			                	PrintWriter pw3 = new PrintWriter(bw3);
+			                	
+			                	FileWriter fw4 = new FileWriter(file4, true);
+			                	BufferedWriter bw4 = new BufferedWriter(fw4);
+			                	PrintWriter pw4 = new PrintWriter(bw4);
+			                	
+			                	FileWriter fw5 = new FileWriter(file5, true);
+			                	BufferedWriter bw5 = new BufferedWriter(fw5);
+			                	PrintWriter pw5 = new PrintWriter(bw5);
+			                	
+			                	FileWriter fw6 = new FileWriter(file6, true);
+			                	BufferedWriter bw6 = new BufferedWriter(fw6);
+			                	PrintWriter pw6 = new PrintWriter(bw6);
+			                	
+			                	FileWriter fw7 = new FileWriter(file7, true);
+			                	BufferedWriter bw7 = new BufferedWriter(fw7);
+			                	PrintWriter pw7 = new PrintWriter(bw7);
 			                	log.info("Throughput counter is called !");
 
 			                	if(npt.getPortId().getPortNumber() == 1) {
-//			                		pw.println(Math.round((rxBytesCounted.getValue()) / timeDifSec));
-			                		pw.println(npt.getPortId() + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
-				                	pw.close();
+			                		C[0] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+//			                		pw.println(npt.getPortId() + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
+			                		pw.println(npt.getPortId() + "," + C[0]);
+			                		pw.close();
 			                	}
-			                	else if(npt.getPortId().getPortNumber() == 2) {
-			                		pw2.println(npt.getPortId() + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
+			                	if(npt.getPortId().getPortNumber() == 2) {
+			                		C[1] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw2.println(npt.getPortId() + "," + C[1]);
 				                	pw2.close();
+			                	}
+			                	if(npt.getPortId().getPortNumber() == 3) {
+			                		C[2] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw3.println(npt.getPortId() + "," + C[2]);
+				                	pw3.close();
+			                	}
+			                	if(npt.getPortId().getPortNumber() == 4) {
+			                		C[3] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw4.println(npt.getPortId() + "," + C[3]);
+				                	pw4.close();
+			                	}
+			                	if(npt.getPortId().getPortNumber() == 5) {
+			                		C[4] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw5.println(npt.getPortId() + "," + C[4]);
+				                	pw5.close();
+			                	}
+			                	if(npt.getPortId().getPortNumber() == 6) {
+			                		C[5] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw6.println(npt.getPortId() + "," + C[5]);
+				                	pw6.close();
+			                	}
+			                	if(npt.getPortId().getPortNumber() == 7) {
+			                		C[6] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw7.println(npt.getPortId() + "," + C[6]);
+				                	pw7.close();
 			                	}
 			                }catch(IOException ioe){
 			                	System.out.println("Exception occurred:");
