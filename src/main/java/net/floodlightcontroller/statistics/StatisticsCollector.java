@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.Thread.State;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -42,6 +43,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.primitives.UnsignedLong;
 import com.google.common.util.concurrent.ListenableFuture;
+import com.kenai.jffi.Array;
 
 import net.floodlightcontroller.core.IOFSwitch;
 import net.floodlightcontroller.core.internal.IOFSwitchService;
@@ -89,9 +91,97 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	
 	private static final HashMap<NodePortTuple, PortDesc> portDesc = new HashMap<>();
 
+	/* Anomaly Tree */
 	public int  m = 7;					// number of BS
 	public int k = 6;					// number of eigenvalues need to record
 	public long[] C = new long[m];		// Current eigenvalue matrix (mx1)
+	public long[][] F = new long[m][k];	// m x k; all normal eigenvalues vector
+	public double[] alpha = new double[k];	// k x 1; weight vector
+	public double[] E = new double[m];		// m x 1; average eigenvalue in jth BS vector
+//	public int[] sigma = new int[m];	// m x 1 ; threshold vector
+	public double sum = k * (k + 1) * 1.0 / 2;
+//	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
+	public int tree[] = new int[m]; 
+	
+//	public String logTemp;
+	
+	/* Calculate max of array*/
+	public long max(long[] arr) {
+		long max = arr[0];
+		for(int i = 1; i < arr.length; i++) {
+			if(arr[i] > max)
+				max = arr[i];
+		}
+		return max;
+	}
+	
+	/* Calculate average vector E = F * alpha */
+	public void Average() {
+		for(int i = 0; i < k; i++) {
+			alpha[i] = i / sum;
+		}
+		for(int r = 0; r < m; r++) {
+			for(int c = 0; c < k; c ++) {
+				E[r] += F[r][c] * alpha[c];
+			}
+		}		
+	}
+	
+	/* Anomaly detect by threshold */
+	public void AnomalyTree(long[] C, int m, int K) {
+		boolean anomalyCheck = false;
+		// For each Base Station
+		for(int j = 0; j < m ; j ++) {
+			
+			/* Calculate threshold
+			 * If eq1 = true => add to anomaly tree
+			 * else update parameter
+			 * */
+			
+			double threshold = ((C[j] - E[j]) / (Math.sqrt(K - 1)));
+			
+			/* File log max(Sj) + threshold */
+			try {
+            	File fileT = new File("/home/cuong/FIL/threshold.csv");
+            	FileWriter fwT = new FileWriter(fileT, true);
+            	BufferedWriter bwT = new BufferedWriter(fwT);
+            	PrintWriter pwT = new PrintWriter(bwT);
+            	pwT.println(max(F[j]) + threshold);	                	
+            	pwT.close();
+            }catch(IOException ioe){
+            	System.out.println("Exception occurred:");
+                ioe.printStackTrace();
+            }
+			/* File log max(Sj) + threshold */
+			
+			if(max(F[j]) + threshold < C[j]) {
+				// Add BS to anomaly tree
+				tree[j] = 1;
+			}
+			else {
+				// Update vector S
+				tree[j] = 0;
+				for(int i = 0; i < K - 1; i++) {
+					F[j][i] = F[j][i +1];
+				}
+				F[j][K - 1] = C[j];
+			}
+		}
+		
+		for(int i = 0; i < m; i++) {
+			if(tree[i] != 0) {
+				anomalyCheck = true;	
+			}
+		}
+		
+		if(anomalyCheck) {
+			log.info("Anomaly Tree: " + Arrays.toString(tree));
+		}
+		else {
+			log.info("Normal Traffic !");
+		}
+	}	
+	/* Anomaly Tree */
 
 	/**
 	 * Run periodically to collect all port statistics. This only collects
@@ -250,6 +340,10 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 			                		pw7.println(npt.getPortId() + "," + C[6]);
 				                	pw7.close();
 			                	}
+			                	
+			                	log.info("Vector C: " + Arrays.toString(C));
+			                	Average();
+			                	AnomalyTree(C, m, k);
 			                }catch(IOException ioe){
 			                	System.out.println("Exception occurred:");
 			                    ioe.printStackTrace();
