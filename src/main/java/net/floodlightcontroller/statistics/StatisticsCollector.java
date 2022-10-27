@@ -102,7 +102,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	public double sum = k * (k + 1) * 1.0 / 2;
 //	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
 	public int tree[] = new int[m]; 
-	
+	double elapsedTime;
 //	public String logTemp;
 	
 	/* Calculate max of array*/
@@ -118,7 +118,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	/* Calculate average vector E = F * alpha */
 	public void Average() {
 		for(int i = 0; i < k; i++) {
-			alpha[i] = i / sum;
+			alpha[i] = (i + 1) / sum;
 		}
 		for(int r = 0; r < m; r++) {
 			for(int c = 0; c < k; c ++) {
@@ -206,11 +206,17 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 
 		@Override
 		public void run() {
+			log.info("Run Function call !");
+			elapsedTime += 2;
+			log.info("Time: " + Double.toString(elapsedTime));
 			Map<DatapathId, List<OFStatsReply>> replies = getSwitchStatistics(switchService.getAllSwitchDpids(), OFStatsType.PORT);
 			for (Entry<DatapathId, List<OFStatsReply>> e : replies.entrySet()) {
+//				log.info("First Loop");
 				for (OFStatsReply r : e.getValue()) {
 					OFPortStatsReply psr = (OFPortStatsReply) r;
+//					log.info("Second Loop");
 					for (OFPortStatsEntry pse : psr.getEntries()) {
+//						log.info("Third Loop");
 						NodePortTuple npt = new NodePortTuple(e.getKey(), pse.getPortNo());
 						SwitchPortBandwidth spb;
 						if (portStats.containsKey(npt) || tentativePortStats.containsKey(npt)) {
@@ -243,29 +249,17 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 							}
 							long speed = getSpeed(npt);
 							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1.0 / 1000000) / MILLIS_PER_SEC;
-//							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1000000000) ;
+							elapsedTime += timeDifSec;
+							
 							portStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), 
 									U64.ofRaw(speed),
 									U64.ofRaw(Math.round((rxBytesCounted.getValue() * BITS_PER_BYTE) / timeDifSec)),
 									U64.ofRaw(Math.round((txBytesCounted.getValue() * BITS_PER_BYTE) / timeDifSec)),
 									pse.getRxBytes(), pse.getTxBytes())
 									);
+							
 							// Cuong
-//			                try {
-//			                	File file = new File("/home/cuong/FIL/new_port_stats.csv");
-//			                	FileWriter fw = new FileWriter(file, true);
-//			                	BufferedWriter bw = new BufferedWriter(fw);
-//			                	PrintWriter pw = new PrintWriter(bw);
-//			                	log.info("Throughput counter is called !");
-////			                Add a new line to the file content
-////			                	pw.println("");
-//			                	pw.println(npt.toString() + "," + Long.toString(speed) + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec) + "," + Math.round((txBytesCounted.getValue() ) / timeDifSec));	                	
-//			                	pw.close();
-//			                }catch(IOException ioe){
-//			                	System.out.println("Exception occurred:");
-//			                    ioe.printStackTrace();
-//			                }	                	
-		                	
+	             		                	
 			                try {
 			                	File file = new File("/home/cuong/FIL/port1_stats.csv");
 			                	File file2 = new File("/home/cuong/FIL/port2_stats.csv");
@@ -302,60 +296,68 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 			                	FileWriter fw7 = new FileWriter(file7, true);
 			                	BufferedWriter bw7 = new BufferedWriter(fw7);
 			                	PrintWriter pw7 = new PrintWriter(bw7);
-			                	log.info("Throughput counter is called !");
+//			                	log.info("Throughput counter is called !");
+//			                	tmp += (Math.round((rxBytesCounted.getValue()) / timeDifSec));
+//			                	log.info("NPT: " + npt);
+			                	log.info(npt + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
+//			                	pw.println(npt + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
+//			                	pw.close();
 
-			                	if(npt.getPortId().getPortNumber() == 1) {
-			                		C[0] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                	if(npt.getNodeId().getLong() == 1) {
+			                		C[0] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
 //			                		pw.println(npt.getPortId() + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
-			                		pw.println(npt.getPortId() + "," + C[0]);
+			                		pw.println(npt.getNodeId() + "," + C[0]);
 			                		pw.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 2) {
-			                		C[1] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw2.println(npt.getPortId() + "," + C[1]);
+			                	if(npt.getNodeId().getLong() == 2) {
+			                		C[1] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw2.println(npt.getNodeId() + "," + C[1]);
 				                	pw2.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 3) {
-			                		C[2] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw3.println(npt.getPortId() + "," + C[2]);
+			                	if(npt.getNodeId().getLong() == 3) {
+			                		C[2] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw3.println(npt.getNodeId() + "," + C[2]);
 				                	pw3.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 4) {
-			                		C[3] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw4.println(npt.getPortId() + "," + C[3]);
+			                	if(npt.getNodeId().getLong() == 4) {
+			                		C[3] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw4.println(npt.getNodeId() + "," + C[3]);
 				                	pw4.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 5) {
-			                		C[4] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw5.println(npt.getPortId() + "," + C[4]);
+			                	if(npt.getNodeId().getLong() == 5) {
+			                		C[4] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw5.println(npt.getNodeId() + "," + C[4]);
 				                	pw5.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 6) {
-			                		C[5] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw6.println(npt.getPortId() + "," + C[5]);
+			                	if(npt.getNodeId().getLong() == 6) {
+			                		C[5] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw6.println(npt.getNodeId() + "," + C[5]);
 				                	pw6.close();
 			                	}
-			                	if(npt.getPortId().getPortNumber() == 7) {
-			                		C[6] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw7.println(npt.getPortId() + "," + C[6]);
+			                	if(npt.getNodeId().getLong() == 7) {
+			                		C[6] += Math.round((rxBytesCounted.getValue()) / timeDifSec);
+			                		pw7.println(npt.getNodeId() + "," + C[6]);
 				                	pw7.close();
 			                	}
-			                	
-			                	log.info("Vector C: " + Arrays.toString(C));
-			                	Average();
-			                	AnomalyTree(C, m, k);
 			                }catch(IOException ioe){
 			                	System.out.println("Exception occurred:");
 			                    ioe.printStackTrace();
 			                }	
-			                
 						} else { /* initialize */
 							tentativePortStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), U64.ZERO, U64.ZERO, U64.ZERO, pse.getRxBytes(), pse.getTxBytes()));
-//							log.info("TentaivePortStats: ",tentativePortStats);
-//							log.info("Port stats Collector called !");
+//							log.info("TentaticePort stats Collector called !");
 						}
 					}
 				}
+			}
+			if(elapsedTime > 120) {
+				/* Call anomaly tree algorithm */
+				log.info("Vector C: " + Arrays.toString(C));
+//				log.info("Vector E: " + Arrays.toString(E));
+//				log.info("Vector alpha: " + Arrays.toString(alpha));
+				Average();
+				AnomalyTree(C, m, k);
+				Arrays.fill(C, 0);				
 			}
 		}
 
