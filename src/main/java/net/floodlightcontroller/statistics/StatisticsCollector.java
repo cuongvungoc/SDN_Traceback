@@ -91,19 +91,32 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	
 	private static final HashMap<NodePortTuple, PortDesc> portDesc = new HashMap<>();
 
+//	public long[][] define_f() {
+//		long temp[][] = new long[m][k];
+//		Arrays.fill(F, 2000000000);
+//		return temp;
+// 	} 
+
 	/* Anomaly Tree */
 	public int  m = 7;					// number of BS
 	public int k = 6;					// number of eigenvalues need to record
 	public long[] C = new long[m];		// Current eigenvalue matrix (mx1)
 	public long[][] F = new long[m][k];	// m x k; all normal eigenvalues vector
+//	public long F[][] = define_f();
 	public double[] alpha = new double[k];	// k x 1; weight vector
 	public double[] E = new double[m];		// m x 1; average eigenvalue in jth BS vector
 //	public int[] sigma = new int[m];	// m x 1 ; threshold vector
 	public double sum = k * (k + 1) * 1.0 / 2;
 //	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
 	public int tree[] = new int[m]; 
-	double elapsedTime;
+	long elapsedTime;
 //	public String logTemp;
+	
+//	public long[][] define_f() {
+//		long temp[][] = new long[m][k];
+//		Arrays.fill(F, 2000000000);
+//		return temp;
+// 	} 
 	
 	/* Calculate max of array*/
 	public long max(long[] arr) {
@@ -138,7 +151,8 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 			 * else update parameter
 			 * */
 			
-			double threshold = ((C[j] - E[j]) / (Math.sqrt(K - 1)));
+			double threshold = (Math.abs(C[j] - E[j]) / (Math.sqrt(K - 1)));
+			log.info("" + threshold);
 			
 			/* File log max(Sj) + threshold */
 			try {
@@ -207,8 +221,19 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 		@Override
 		public void run() {
 			log.info("Run Function call !");
+//			if (elapsedTime < 60) {
+//				for (long[] row: F)
+//				    Arrays.fill(row, 50000000);
+////				Arrays.fill(F, 2000000);
+//			}
+			for (int  i = 0; i < m; i++) {
+				log.info("Vector F: " + Arrays.toString(F[i]));
+			}
+			
 			elapsedTime += 2;
-			log.info("Time: " + Double.toString(elapsedTime));
+			log.info("" + elapsedTime);
+//			long timestamp = System.currentTimeMillis() / 1000;
+//			log.info("Time: " + timestamp);
 			Map<DatapathId, List<OFStatsReply>> replies = getSwitchStatistics(switchService.getAllSwitchDpids(), OFStatsType.PORT);
 			for (Entry<DatapathId, List<OFStatsReply>> e : replies.entrySet()) {
 //				log.info("First Loop");
@@ -249,7 +274,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 							}
 							long speed = getSpeed(npt);
 							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1.0 / 1000000) / MILLIS_PER_SEC;
-							elapsedTime += timeDifSec;
+//							elapsedTime += timeDifSec;
 							
 							portStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), 
 									U64.ofRaw(speed),
@@ -299,7 +324,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 //			                	log.info("Throughput counter is called !");
 //			                	tmp += (Math.round((rxBytesCounted.getValue()) / timeDifSec));
 //			                	log.info("NPT: " + npt);
-			                	log.info(npt + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
+//			                	log.info(npt + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec)); // new commnetn
 //			                	pw.println(npt + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
 //			                	pw.close();
 
@@ -350,7 +375,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 					}
 				}
 			}
-			if(elapsedTime > 120) {
+			if(elapsedTime > 30) {
 				/* Call anomaly tree algorithm */
 				log.info("Vector C: " + Arrays.toString(C));
 //				log.info("Vector E: " + Arrays.toString(E));
