@@ -444,6 +444,7 @@ org/sdnplatform/sync/internal/config/SyncStoreCCProvider$StringListener.class
 net/floodlightcontroller/perfmon/PerfMonDataResource.class
 org/sdnplatform/sync/thrift/RegisterResponseMessage$RegisterResponseMessageStandardSchemeFactory.class
 net/floodlightcontroller/storage/CompoundPredicate.class
+net/floodlightcontroller/anomalytree/AnomalyTree.class
 net/floodlightcontroller/mactracker/MACTracker$2.class
 net/floodlightcontroller/linkdiscovery/ILinkDiscovery.class
 org/sdnplatform/sync/error/SyncException.class
@@ -1058,6 +1059,7 @@ net/floodlightcontroller/util/OFPortMode.class
 net/floodlightcontroller/core/SwitchSyncRepresentation.class
 net/floodlightcontroller/linkdiscovery/internal/LinkDiscoveryManager$3.class
 net/floodlightcontroller/linkdiscovery/ILinkDiscovery$1.class
+net/floodlightcontroller/esd/ExtremeStudentizedDeviation.class
 net/floodlightcontroller/packet/BSNPROBE.class
 org/sdnplatform/sync/thrift/RegisterResponseMessage$RegisterResponseMessageStandardScheme.class
 org/sdnplatform/sync/thrift/RegisterResponseMessage$_Fields.class

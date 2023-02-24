@@ -1,0 +1,734 @@
+[[1;34mINFO[m] Scanning for projects...
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m------------------< [0;36morg.projectfloodlight:floodlight[0;1m >------------------[m
+[[1;34mINFO[m] [1mBuilding floodlight 1.2-SNAPSHOT[m
+[[1;34mINFO[m] [1m--------------------------------[ jar ]---------------------------------[m
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mbuild-helper-maven-plugin:1.7:add-source[m [1m(add-source)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Source directory: /home/cuong/floodlight/lib/gen-java added.
+[[1;34mINFO[m] Source directory: /home/cuong/floodlight/src/main/python added.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:resources[m [1m(default-resources)[m @ [36mfloodlight[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] Copying 3 resources
+[[1;34mINFO[m] Copying 861 resources
+[[1;34mINFO[m] Copying 2 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:compile[m [1m(default-compile)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 598 source files to /home/cuong/floodlight/target/classes
+[[1;33mWARNING[m] /home/cuong/floodlight/src/main/java/net/floodlightcontroller/routing/VirtualGatewayInstance.java: Some input files use or override a deprecated API.
+[[1;33mWARNING[m] /home/cuong/floodlight/src/main/java/net/floodlightcontroller/routing/VirtualGatewayInstance.java: Recompile with -Xlint:deprecation for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-resources-plugin:2.6:testResources[m [1m(default-testResources)[m @ [36mfloodlight[0;1m ---[m
+[[1;33mWARNING[m] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[[1;34mINFO[m] Copying 2 resources
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-compiler-plugin:3.0:testCompile[m [1m(default-testCompile)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Changes detected - recompiling the module!
+[[1;33mWARNING[m] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[[1;34mINFO[m] Compiling 105 source files to /home/cuong/floodlight/target/test-classes
+[[1;33mWARNING[m] /home/cuong/floodlight/src/test/java/net/floodlightcontroller/core/internal/OFChannelHandlerVer13Test.java: Some input files use or override a deprecated API.
+[[1;33mWARNING[m] /home/cuong/floodlight/src/test/java/net/floodlightcontroller/core/internal/OFChannelHandlerVer13Test.java: Recompile with -Xlint:deprecation for details.
+[[1;33mWARNING[m] /home/cuong/floodlight/src/test/java/net/floodlightcontroller/core/internal/OFSwitchHandshakeHandlerVer13Test.java: /home/cuong/floodlight/src/test/java/net/floodlightcontroller/core/internal/OFSwitchHandshakeHandlerVer13Test.java uses unchecked or unsafe operations.
+[[1;33mWARNING[m] /home/cuong/floodlight/src/test/java/net/floodlightcontroller/core/internal/OFSwitchHandshakeHandlerVer13Test.java: Recompile with -Xlint:unchecked for details.
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-surefire-plugin:2.12.4:test[m [1m(default-test)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Surefire report directory: /home/cuong/floodlight/target/surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running org.sdnplatform.sync.internal.SyncManagerTest
+15:36:51,610 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback-test.xml]
+15:36:51,610 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Could NOT find resource [logback.groovy]
+15:36:51,610 |-INFO in ch.qos.logback.classic.LoggerContext[default] - Found resource [logback.xml] at [file:/home/cuong/floodlight/target/test-classes/logback.xml]
+15:36:51,610 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs multiple times on the classpath.
+15:36:51,611 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [file:/home/cuong/floodlight/target/test-classes/logback.xml]
+15:36:51,611 |-WARN in ch.qos.logback.classic.LoggerContext[default] - Resource [logback.xml] occurs at [file:/home/cuong/floodlight/target/classes/logback.xml]
+15:36:51,657 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - debug attribute not set
+15:36:51,662 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - About to instantiate appender of type [ch.qos.logback.core.ConsoleAppender]
+15:36:51,664 |-INFO in ch.qos.logback.core.joran.action.AppenderAction - Naming appender as [STDOUT]
+15:36:51,668 |-INFO in ch.qos.logback.core.joran.action.NestedComplexPropertyIA - Assuming default type [ch.qos.logback.classic.encoder.PatternLayoutEncoder] for [encoder] property
+15:36:51,699 |-INFO in ch.qos.logback.classic.joran.action.RootLoggerAction - Setting level of ROOT logger to INFO
+15:36:51,700 |-INFO in ch.qos.logback.core.joran.action.AppenderRefAction - Attaching appender named [STDOUT] to Logger[ROOT]
+15:36:51,700 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [io] to ERROR
+15:36:51,700 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [LogService] to ERROR
+15:36:51,700 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [net.floodlightcontroller] to ERROR
+15:36:51,700 |-INFO in ch.qos.logback.classic.joran.action.LoggerAction - Setting level of logger [org.sdnplatform] to ERROR
+15:36:51,700 |-INFO in ch.qos.logback.classic.joran.action.ConfigurationAction - End of configuration.
+15:36:51,701 |-INFO in ch.qos.logback.classic.joran.JoranConfigurator@1500955a - Registering current configuration as safe fallback point
+
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 9.055 sec
+Running org.sdnplatform.sync.internal.BootstrapTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.995 sec
+Running org.sdnplatform.sync.internal.store.JavaDBStorageEngineTest
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.092 sec
+Running org.sdnplatform.sync.internal.store.JacksonStoreTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.018 sec
+Running org.sdnplatform.sync.internal.store.RemoteStoreTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.283 sec
+Running org.sdnplatform.sync.internal.store.InMemoryStorageEngineTest
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.513 sec
+Running org.sdnplatform.sync.internal.version.ClockEntryTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running org.sdnplatform.sync.internal.version.VectorClockInconsistencyResolverTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running org.sdnplatform.sync.internal.version.VectorClockTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 sec
+Running org.sdnplatform.sync.client.ClientTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.292 sec
+Running org.sdnplatform.sync.VersionedTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.statistics.StatisticsTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.267 sec
+Running net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest
+2023-02-24 15:37:13.189 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.1","tp-dst":"80","action":"ALLOW"}
+java.lang.IllegalArgumentException: CIDR mask bits must be specified.
+	at net.floodlightcontroller.accesscontrollist.util.IPAddressUtil.parseCIDR(IPAddressUtil.java:40)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:172)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:120)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.191 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.256/32","tp-dst":"80","action":"ALLOW"}
+java.lang.IllegalArgumentException: Octet values in specified IPv4 address must be 0 <= value <= 255
+	at net.floodlightcontroller.packet.IPv4.toIPv4Address(IPv4.java:460)
+	at net.floodlightcontroller.accesscontrollist.util.IPAddressUtil.parseCIDR(IPAddressUtil.java:55)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:172)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:124)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.191 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.01/32","tp-dst":"80","action":"ALLOW"}
+java.lang.IllegalArgumentException: Specified IPv4 address mustcontain 4 sets of numerical digits separated by periods
+	at net.floodlightcontroller.packet.IPv4.toIPv4Address(IPv4.java:453)
+	at net.floodlightcontroller.accesscontrollist.util.IPAddressUtil.parseCIDR(IPAddressUtil.java:55)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:172)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:128)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.192 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.1/a","tp-dst":"80","action":"ALLOW"}
+java.lang.NumberFormatException: CIDR mask bits must be specified as a number(0 ~ 32).
+	at net.floodlightcontroller.accesscontrollist.util.IPAddressUtil.parseCIDR(IPAddressUtil.java:49)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:172)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:132)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.192 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.1/33","tp-dst":"80","action":"ALLOW"}
+java.lang.NumberFormatException: CIDR mask bits must be 0 <= value <= 32.
+	at net.floodlightcontroller.accesscontrollist.util.IPAddressUtil.parseCIDR(IPAddressUtil.java:52)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:172)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:136)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.193 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"ARP","src-ip":"10.0.0.1/32","tp-dst":"80","action":"ALLOW"}
+java.lang.IllegalArgumentException: nw-proto must be specified as (TCP || UDP || ICMP).
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:192)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:140)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.194 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.1/32","tp-dst":"a","action":"ALLOW"}
+java.lang.NumberFormatException: tp-dst must be specified as a number.
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:202)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:144)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.194 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"nw-proto":"TCP","src-ip":"10.0.0.1/32","tp-dst":"80","action":"PERMIT"}
+java.lang.IllegalArgumentException: action must be specidied as (allow || deny).
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:213)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.store(ACLRuleResource.java:65)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testStore(ACLRuleResourceTest.java:148)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.197 ERROR [n.f.a.w.ACLRuleResource] Error parsing ACL rule: {"ruleid":"a"}
+java.lang.NumberFormatException: ruleid must be specified as a number.
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.jsonToRule(ACLRuleResource.java:165)
+	at net.floodlightcontroller.accesscontrollist.web.ACLRuleResource.remove(ACLRuleResource.java:100)
+	at net.floodlightcontroller.accesscontrollist.ACLRuleResourceTest.testRemove(ACLRuleResourceTest.java:173)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+2023-02-24 15:37:13.198 ERROR [n.f.a.w.ACLRuleResource] Failed! a rule with this ID doesn't exist.
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.052 sec
+Running net.floodlightcontroller.accesscontrollist.ACLTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.053 sec
+Running net.floodlightcontroller.accesscontrollist.IPAddressUtilTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running net.floodlightcontroller.accesscontrollist.ACLRuleTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.accesscontrollist.APManagerTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running net.floodlightcontroller.hub.HubTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.07 sec
+Running net.floodlightcontroller.debugcounter.DebugCounterServiceTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+Running net.floodlightcontroller.debugcounter.OFConnectionCountersTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.079 sec
+Running net.floodlightcontroller.debugcounter.DebugCounterImplTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.routing.RouteTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running net.floodlightcontroller.learningswitch.LearningSwitchTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 sec
+Running net.floodlightcontroller.dhcpserver.DHCPInstanceTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.009 sec
+Running net.floodlightcontroller.dhcpserver.DHCPPoolTest
+Tests run: 23, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.007 sec
+Running net.floodlightcontroller.dhcpserver.DHCPBindingTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running net.floodlightcontroller.dhcpserver.DHCPMessageHandlerTest
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.015 sec
+Running net.floodlightcontroller.core.internal.OFChannelHandlerVer10Test
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.057 sec
+Running net.floodlightcontroller.core.internal.OFSwitchHandshakeHandlerVer13Test
+2023-02-24 15:37:13.638 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer13(xid=212, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@2a6fb62f
+2023-02-24 15:37:13.709 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer13(xid=324, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@2ef041bb
+2023-02-24 15:37:13.713 ERROR [n.f.c.i.OFSwitchHandshakeHandler] Switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend app handshake plugin TestHandshakePlugin returned net.floodlightcontroller.core.internal.PluginResult@605c7a9e. Disconnecting switch.
+2023-02-24 15:37:13.724 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer13(xid=457, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@21c75084
+Tests run: 31, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.262 sec
+Running net.floodlightcontroller.core.internal.ControllerTest
+Tests run: 10, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.356 sec
+Running net.floodlightcontroller.core.internal.RoleManagerTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.012 sec
+Running net.floodlightcontroller.core.internal.OFSwitchHandshakeHandlerVer10Test
+2023-02-24 15:37:14.180 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer10(xid=648, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@d1c5cf2
+2023-02-24 15:37:14.241 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer10(xid=730, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@67c21bf
+2023-02-24 15:37:14.241 ERROR [n.f.c.i.OFSwitchHandshakeHandler] Switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend app handshake plugin TestHandshakePlugin returned net.floodlightcontroller.core.internal.PluginResult@67afe909. Disconnecting switch.
+2023-02-24 15:37:14.244 ERROR [n.f.c.i.OFSwitchHandshakeHandler] OFBadActionErrorMsgVer10(xid=835, code=BAD_TYPE, data=[unparsed: ]) from switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend in state net.floodlightcontroller.core.internal.OFSwitchHandshakeHandler$WaitInitialRoleState@6903ed0e
+Tests run: 27, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.139 sec
+Running net.floodlightcontroller.core.internal.OFChannelHandlerVer13Test
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.013 sec
+Running net.floodlightcontroller.core.internal.OFSwitchManagerTest
+2023-02-24 15:37:14.403 ERROR [n.f.c.i.OFSwitchManager] Switch EasyMock for interface net.floodlightcontroller.core.IOFSwitchBackend activated but controller not MASTER
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.35 sec
+Running net.floodlightcontroller.core.internal.OFConnectionTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.041 sec
+Running net.floodlightcontroller.core.internal.OFSwitchBaseTest
+Tests run: 11, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.031 sec
+Running net.floodlightcontroller.core.internal.OFSwitchTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.005 sec
+Running net.floodlightcontroller.core.util.AppCookieTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.core.util.SingletonTaskTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.587 sec
+Running net.floodlightcontroller.core.util.MessageDispatcherTest
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 5,6,7,8,9,0,1,2,3,4,
+Ordering: 9,5,6,7,8,0,1,2,3,4,
+Ordering: 0,5,6,7,8,1,2,3,4,9,
+Ordering: 5,6,7,8,0,1,2,3,4,9,
+Ordering: 0,9,5,6,7,8,1,2,3,4,
+Ordering: 0,5,6,7,8,1,2,3,4,9,
+Ordering: 5,6,7,8,1,2,3,4,0,9,
+Ordering: 9,5,6,7,8,1,2,3,4,0,
+Ordering: 1,2,3,4,9,5,6,7,8,0,
+Ordering: 5,6,7,8,1,2,3,4,0,9,
+Ordering: 0,1,2,3,4,5,6,7,8,9,
+Ordering: 1,2,3,4,9,5,6,7,8,0,
+Ordering: 9,0,1,2,3,4,5,6,7,8,
+Ordering: 0,5,6,7,8,1,2,3,4,9,
+Ordering: 0,1,2,3,4,9,5,6,7,8,
+Ordering: 9,1,2,3,4,5,6,7,8,0,
+Ordering: 1,2,3,4,9,0,5,6,7,8,
+Ordering: 9,0,5,6,7,8,1,2,3,4,
+Ordering: 1,2,3,4,9,5,6,7,8,0,
+Ordering: 5,6,7,8,0,9,1,2,3,4,
+Ordering: 9,1,2,3,4,5,6,7,8,0,
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.122 sec
+Running net.floodlightcontroller.core.util.VersionTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.047 sec
+Running net.floodlightcontroller.linkdiscovery.internal.LinkDiscoveryManagerTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.342 sec
+Running net.floodlightcontroller.forwarding.L3RoutingTest
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.051 sec
+Running net.floodlightcontroller.forwarding.ForwardingTest
+2023-02-24 15:37:15.967 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.986 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.988 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.990 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.991 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.992 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:15.995 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:16.1 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:16.9 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:16.11 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:16.13 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+2023-02-24 15:37:16.14 ERROR [n.f.l.i.LinkDiscoveryManager] No storage source found.
+Tests run: 12, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.105 sec
+Running net.floodlightcontroller.devicemanager.internal.DeviceManagerImplTest
+Tests run: 37, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.365 sec
+Running net.floodlightcontroller.devicemanager.internal.DeviceUniqueIndexTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Running net.floodlightcontroller.virtualnetwork.VirtualNetworkFilterTest
+Tests run: 8, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+Running net.floodlightcontroller.util.OFMessageDamperTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.122 sec
+Running net.floodlightcontroller.util.EnumBitmapsTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running net.floodlightcontroller.util.TimedCacheTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.063 sec
+Running net.floodlightcontroller.topology.TopologyInstanceTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.107 sec
+Running net.floodlightcontroller.topology.TopologyManagerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 sec
+Running net.floodlightcontroller.firewall.FirewallTest
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.019 sec
+Running net.floodlightcontroller.loadbalancer.LoadBalancerTest
+2023-02-24 15:37:16.725 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.727 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.727 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.729 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.729 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.742 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.743 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.744 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.745 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.745 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.747 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.748 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.749 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.750 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.750 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.751 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.752 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.756 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+2023-02-24 15:37:16.756 ERROR [n.f.l.LoadBalancer] Specified vip-id must exist, creating pool with null vipId anyway
+Tests run: 16, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 sec
+Running net.floodlightcontroller.storage.memory.tests.MemoryStorageTest
+2023-02-24 15:37:16.770 ERROR [n.f.s.AbstractStorageSource] Failure in asynchronous call to executeQuery
+net.floodlightcontroller.storage.StorageException: Storage Exception: Table InvalidTableName does not exist
+	at net.floodlightcontroller.storage.memory.MemoryStorageSource.getTable(MemoryStorageSource.java:45)
+	at net.floodlightcontroller.storage.memory.MemoryStorageSource.getAllRows(MemoryStorageSource.java:54)
+	at net.floodlightcontroller.storage.nosql.NoSqlStorageSource.executeParameterizedQuery(NoSqlStorageSource.java:727)
+	at net.floodlightcontroller.storage.nosql.NoSqlStorageSource.executeQueryImpl(NoSqlStorageSource.java:749)
+	at net.floodlightcontroller.storage.AbstractStorageSource.executeQuery(AbstractStorageSource.java:169)
+	at net.floodlightcontroller.storage.AbstractStorageSource.executeQuery(AbstractStorageSource.java:178)
+	at net.floodlightcontroller.storage.AbstractStorageSource$2.doStorageOperation(AbstractStorageSource.java:212)
+	at net.floodlightcontroller.storage.AbstractStorageSource$2.doStorageOperation(AbstractStorageSource.java:210)
+	at net.floodlightcontroller.storage.AbstractStorageSource$StorageCallable.call(AbstractStorageSource.java:84)
+	at net.floodlightcontroller.storage.SynchronousExecutorService.submit(SynchronousExecutorService.java:143)
+	at net.floodlightcontroller.storage.AbstractStorageSource.executeQueryAsync(AbstractStorageSource.java:209)
+	at net.floodlightcontroller.storage.tests.StorageTest.testAsyncException(StorageTest.java:641)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:59)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:56)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:26)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.BlockJUnit4ClassRunner$1.evaluate(BlockJUnit4ClassRunner.java:100)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:366)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:103)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:63)
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+Tests run: 29, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.014 sec
+Running net.floodlightcontroller.hasupport.linkdiscovery.LDFilterQueueTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.01 sec
+Running net.floodlightcontroller.hasupport.linkdiscovery.LDHAWorkerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Running net.floodlightcontroller.hasupport.linkdiscovery.LDSyncAdapterTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.042 sec
+Running net.floodlightcontroller.hasupport.topology.TopoFilterQueueTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.006 sec
+Running net.floodlightcontroller.hasupport.topology.TopoSyncAdapterTest
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 sec
+Running net.floodlightcontroller.hasupport.topology.TopoHAWorkerTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 sec
+Running net.floodlightcontroller.hasupport.HAServerTest
+Tests run: 14, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.602 sec
+Running net.floodlightcontroller.hasupport.NetworkNodeTest
+{127.0.0.1:4243=net.floodlightcontroller.hasupport.NioClient@7b1c501d}
+{127.0.0.1:4245=OFF, 127.0.0.1:4243=ON, 127.0.0.1:4244=OFF}
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.923 sec
+Running net.floodlightcontroller.packet.BSNTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.DHCPTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.008 sec
+Running net.floodlightcontroller.packet.EthernetTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.IPv6Test
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.LLDPTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.IPv4Test
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.ICMPTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.LLDPOrganizationalTLVTest
+Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+Running net.floodlightcontroller.packet.UDPTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.TCPTest
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.004 sec
+Running net.floodlightcontroller.packet.PacketTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.GTPTest
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 sec
+Running net.floodlightcontroller.packet.SPUDTest
+Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.001 sec
+
+Results :
+
+Tests run: 530, Failures: 0, Errors: 0, Skipped: 6
+
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-jar-plugin:2.4:jar[m [1m(default-jar)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/cuong/floodlight/target/floodlight-1.2-SNAPSHOT.jar
+[[1;34mINFO[m] 
+[[1;34mINFO[m] [1m--- [0;32mmaven-assembly-plugin:2.5:single[m [1m(default)[m @ [36mfloodlight[0;1m ---[m
+[[1;34mINFO[m] Building jar: /home/cuong/floodlight/target/floodlight.jar
+[[1;33mWARNING[m] Configuration options: 'appendAssemblyId' is set to false, and 'classifier' is missing.
+Instead of attaching the assembly file: /home/cuong/floodlight/target/floodlight.jar, it will become the file for main project artifact.
+NOTE: If multiple descriptors or descriptor-formats are provided for this project, the value of this file will be non-deterministic!
+[[1;33mWARNING[m] Replacing pre-existing project main-artifact file: /home/cuong/floodlight/target/floodlight-1.2-SNAPSHOT.jar
+with assembly file: /home/cuong/floodlight/target/floodlight.jar
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] [1;32mBUILD SUCCESS[m
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m
+[[1;34mINFO[m] Total time:  48.398 s
+[[1;34mINFO[m] Finished at: 2023-02-24T15:37:32+07:00
+[[1;34mINFO[m] [1m------------------------------------------------------------------------[m

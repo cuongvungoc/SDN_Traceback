@@ -118,7 +118,14 @@ public class MACTracker implements IOFMessageListener, IFloodlightModule {
 		// Start new thread to count packet in
         ScheduledExecutorService PICounter = Executors.newScheduledThreadPool(1);
         Runnable piCounter = new Runnable() {
-            public void run() { 
+            public void run() { //			                }catch(IOException ioe){
+//            	System.out.println("Exception occurred:");
+//                ioe.printStackTrace();
+//            }	
+//		} else { /* initialize */
+//			tentativePortStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), U64.ZERO, U64.ZERO, U64.ZERO, pse.getRxBytes(), pse.getTxBytes()));
+////			log.info("TentaticePort stats Collector called !");
+//		}
             	packetInCounter = packetInNow - packetInPre;
             	packetInPre = packetInNow;
             	
@@ -185,7 +192,7 @@ public class MACTracker implements IOFMessageListener, IFloodlightModule {
 	                /* Your logic here! */
 	                /* Count number of packet in */
 	                packetInNow ++; 
-	                logger.info("TCP Source Port: {}, TCP Destination Port: {}",srcPort.toString(), dstPort.toString());
+//	                logger.info("TCP Source Port: {}, TCP Destination Port: {}",srcPort.toString(), dstPort.toString());
 	                
 	                /* Write source port and destination port to file */
 //	                

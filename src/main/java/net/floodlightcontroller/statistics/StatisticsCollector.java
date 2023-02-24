@@ -91,33 +91,22 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	
 	private static final HashMap<NodePortTuple, PortDesc> portDesc = new HashMap<>();
 
-//	public long[][] define_f() {
-//		long temp[][] = new long[m][k];
-//		Arrays.fill(F, 2000000000);
-//		return temp;
-// 	} 
-
 	/* Anomaly Tree */
-	public int  m = 7;					// number of BS
-	public int k = 6;					// number of eigenvalues need to record
-	public long[] C = new long[m];		// Current eigenvalue matrix (mx1)
-	public long[][] F = new long[m][k];	// m x k; all normal eigenvalues vector
-//	public long F[][] = define_f();
+	public int  m = 7;						// number of BS
+	public int k = 6;						// number of eigenvalues need to record
+	public long[] C = new long[m];			// Current eigenvalue matrix (mx1)
+	public long[][] F = new long[m][k];		// m x k; all normal eigenvalues vector
 	public double[] alpha = new double[k];	// k x 1; weight vector
 	public double[] E = new double[m];		// m x 1; average eigenvalue in jth BS vector
-//	public int[] sigma = new int[m];	// m x 1 ; threshold vector
 	public double sum = k * (k + 1) * 1.0 / 2;
-//	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
 	public int tree[] = new int[m]; 
+	public double list_threshold[] = new double[m];
 	long elapsedTime;
-//	public String logTemp;
+	//	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
+	//	public int[] sigma = new int[m];	// m x 1 ; threshold vector
+	//	public String logTemp;
 	
-//	public long[][] define_f() {
-//		long temp[][] = new long[m][k];
-//		Arrays.fill(F, 2000000000);
-//		return temp;
-// 	} 
-	
+
 	/* Calculate max of array*/
 	public long max(long[] arr) {
 		long max = arr[0];
@@ -152,21 +141,8 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 			 * */
 			
 			double threshold = (Math.abs(C[j] - E[j]) / (Math.sqrt(K - 1)));
+			list_threshold[j] = threshold; 
 			log.info("" + threshold);
-			
-			/* File log max(Sj) + threshold */
-			try {
-            	File fileT = new File("/home/cuong/FIL/threshold.csv");
-            	FileWriter fwT = new FileWriter(fileT, true);
-            	BufferedWriter bwT = new BufferedWriter(fwT);
-            	PrintWriter pwT = new PrintWriter(bwT);
-            	pwT.println(max(F[j]) + threshold);	                	
-            	pwT.close();
-            }catch(IOException ioe){
-            	System.out.println("Exception occurred:");
-                ioe.printStackTrace();
-            }
-			/* File log max(Sj) + threshold */
 			
 			if(max(F[j]) + threshold < C[j]) {
 				// Add BS to anomaly tree
@@ -194,6 +170,19 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 		else {
 			log.info("Normal Traffic !");
 		}
+		/* File log max(Sj) + threshold */
+		try {
+        	File fileT = new File("/home/cuong/FIL/LogFile/threshold.csv");
+        	FileWriter fwT = new FileWriter(fileT, true);
+        	BufferedWriter bwT = new BufferedWriter(fwT);
+        	PrintWriter pwT = new PrintWriter(bwT);
+        	pwT.println(Arrays.toString(list_threshold));
+        	pwT.close();
+        }catch(IOException ioe){
+        	System.out.println("Exception occurred:");
+            ioe.printStackTrace();
+        }
+		/* File log max(Sj) + threshold */
 	}	
 	/* Anomaly Tree */
 
@@ -221,27 +210,26 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 		@Override
 		public void run() {
 			log.info("Run Function call !");
-//			if (elapsedTime < 60) {
-//				for (long[] row: F)
-//				    Arrays.fill(row, 50000000);
-////				Arrays.fill(F, 2000000);
-//			}
+			if (elapsedTime < 60) {
+				for (long[] row: F)
+				    Arrays.fill(row, 50000000);
+			}
 			for (int  i = 0; i < m; i++) {
 				log.info("Vector F: " + Arrays.toString(F[i]));
 			}
 			
 			elapsedTime += 2;
 			log.info("" + elapsedTime);
-//			long timestamp = System.currentTimeMillis() / 1000;
-//			log.info("Time: " + timestamp);
+			//long timestamp = System.currentTimeMillis() / 1000;
+			//log.info("Time: " + timestamp);
 			Map<DatapathId, List<OFStatsReply>> replies = getSwitchStatistics(switchService.getAllSwitchDpids(), OFStatsType.PORT);
 			for (Entry<DatapathId, List<OFStatsReply>> e : replies.entrySet()) {
-//				log.info("First Loop");
+				//log.info("First Loop");
 				for (OFStatsReply r : e.getValue()) {
 					OFPortStatsReply psr = (OFPortStatsReply) r;
-//					log.info("Second Loop");
+					//log.info("Second Loop");
 					for (OFPortStatsEntry pse : psr.getEntries()) {
-//						log.info("Third Loop");
+						//log.info("Third Loop");
 						NodePortTuple npt = new NodePortTuple(e.getKey(), pse.getPortNo());
 						SwitchPortBandwidth spb;
 						if (portStats.containsKey(npt) || tentativePortStats.containsKey(npt)) {
@@ -274,7 +262,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 							}
 							long speed = getSpeed(npt);
 							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1.0 / 1000000) / MILLIS_PER_SEC;
-//							elapsedTime += timeDifSec;
+							//elapsedTime += timeDifSec;
 							
 							portStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), 
 									U64.ofRaw(speed),
@@ -375,11 +363,25 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 					}
 				}
 			}
-			if(elapsedTime > 30) {
+			if(elapsedTime > 60) {
 				/* Call anomaly tree algorithm */
 				log.info("Vector C: " + Arrays.toString(C));
-//				log.info("Vector E: " + Arrays.toString(E));
+				log.info("Vector E: " + Arrays.toString(E));
 //				log.info("Vector alpha: " + Arrays.toString(alpha));
+				
+				try {
+	            	File cur = new File("/home/cuong/FIL/LogFile/current.csv");
+	            	FileWriter fwCur = new FileWriter(cur, true);
+	            	BufferedWriter bwCur = new BufferedWriter(fwCur);
+	            	PrintWriter pwCur = new PrintWriter(bwCur);
+	            	pwCur.println("Vector C" + "," + elapsedTime + "," + Arrays.toString(C));	
+	            	pwCur.println("Vector E" + "," + elapsedTime + "," + Arrays.toString(E));	
+	            	pwCur.close();
+	            }catch(IOException ioe){
+	            	System.out.println("Exception occurred:");
+	                ioe.printStackTrace();
+	            }
+				
 				Average();
 				AnomalyTree(C, m, k);
 				Arrays.fill(C, 0);				
