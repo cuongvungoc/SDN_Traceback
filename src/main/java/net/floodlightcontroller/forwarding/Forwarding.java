@@ -634,8 +634,60 @@ public class Forwarding extends ForwardingBase implements IFloodlightModule, IOF
         IDevice srcDevice = IDeviceService.fcStore.get(cntx, IDeviceService.CONTEXT_SRC_DEVICE);
 
         if (dstDevice == null) {
-            log.debug("Destination device unknown. Flooding packet");
-            doFlood(sw, pi, decision, cntx);
+        	
+        	// Default code
+//            log.debug("Destination device unknown. Flooding packet");
+//            doFlood(sw, pi, decision, cntx);
+        	
+        	
+        	// Hieu moded
+        	Match m = createMatchFromPacket(sw, srcPort, pi, cntx);
+        	EthType ethtype = m.get(MatchField.ETH_TYPE);
+        	
+        	if (ethtype == EthType.IPv4) {
+        		
+        		DatapathId dpid_sw1 =  DatapathId.of(1);
+        		OFPort p2 = OFPort.of(2);
+        		SwitchPort dstAp = new SwitchPort(dpid_sw1, p2);
+        		
+                U64 flowSetId = flowSetIdRegistry.generateFlowSetId();
+                U64 cookie = makeForwardingCookie(decision, flowSetId);
+                Path path = routingEngineService.getPath(srcSw,
+                        srcPort,
+                        dstAp.getNodeId(),
+                        dstAp.getPortId());
+                
+                if (! path.getPath().isEmpty()) {
+                    if (log.isDebugEnabled()) {
+                        log.debug("pushRoute inPort={} route={} " +
+                                        "destination={}:{}",
+                                new Object[] { srcPort, path,
+                                        dstAp.getNodeId(),
+                                        dstAp.getPortId()});
+                        log.debug("Creating flow rules on the route, match rule: {}", m);
+                    }
+
+                    pushRoute_mod(path, m, pi, sw.getId(), cookie,
+                            cntx, requestFlowRemovedNotifn,
+                            OFFlowModCommand.ADD, false);
+
+                    /*
+                     * Register this flowset with ingress and egress ports for link down
+                     * flow removal. This is done after we push the path as it is blocking.
+                     */
+                    for (NodePortTuple npt : path.getPath()) {
+                        flowSetIdRegistry.registerFlowSetId(npt, flowSetId);
+                    }
+                } /* else no path was found */
+                
+        	}
+        	
+        	else {
+              log.debug("Destination device unknown. Flooding packet");
+              doFlood(sw, pi, decision, cntx);        		
+        	}
+        	
+        	
             return;
         }
 

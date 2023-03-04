@@ -67,6 +67,7 @@ import org.projectfloodlight.openflow.types.OFAuxId;
 import org.projectfloodlight.openflow.types.OFPort;
 import org.projectfloodlight.openflow.types.TableId;
 import org.projectfloodlight.openflow.types.U64;
+import org.python.icu.text.TimeZoneFormat.GMTOffsetPatternType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -688,27 +689,32 @@ public class OFSwitch implements IOFSwitchBackend {
 			s.add(OFType.PORT_MOD);
 			s.add(OFType.TABLE_MOD);
 			s.add(OFType.BARRIER_REQUEST);
+//			s.add(OFType.ANOMALY_DETECTION);
 			m.put(OFVersion.OF_10, Collections.unmodifiableSet(s));
 			
 			s = new HashSet<>();
 			s.addAll(m.get(OFVersion.OF_10));
 			s.add(OFType.GROUP_MOD);
 			s.add(OFType.TABLE_MOD);
+//			s.add(OFType.ANOMALY_DETECTION);
 			m.put(OFVersion.OF_11, Collections.unmodifiableSet(s));
 			
 			s = new HashSet<>();
 			s.addAll(m.get(OFVersion.OF_11));
+//			s.add(OFType.ANOMALY_DETECTION);
 			m.put(OFVersion.OF_12, Collections.unmodifiableSet(s));
 			
 			s = new HashSet<>();
 			s.addAll(m.get(OFVersion.OF_12));
 			s.add(OFType.METER_MOD);
+//			s.add(OFType.ANOMALY_DETECTION);
 			m.put(OFVersion.OF_13, Collections.unmodifiableSet(s));
 			
 			s = new HashSet<>();
 			s.addAll(m.get(OFVersion.OF_13));
 			s.add(OFType.BUNDLE_ADD_MESSAGE);
 			s.add(OFType.BUNDLE_CONTROL);
+//			s.add(OFType.ANOMALY_DETECTION);
 			m.put(OFVersion.OF_14, Collections.unmodifiableSet(s));
 
 			invalidSlaveMsgsByOFVersion = Collections.unmodifiableMap(m);

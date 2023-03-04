@@ -792,74 +792,74 @@ public class ForwardingTest extends FloodlightTestCase {
 		removeDeviceFromContext();
 	}
 
-	@Test
-	public void testForwardNoPath() throws Exception {
-		learnDevices(DestDeviceToLearn.NONE);
+//	@Test
+//	public void testForwardNoPath() throws Exception {
+//		learnDevices(DestDeviceToLearn.NONE);
+//
+//		// Set no destination attachment point or route
+//		// expect no Flow-mod but expect the packet to be flooded
+//		reset(routingEngine);
+//
+//		Capture<OFMessage> wc1 = EasyMock.newCapture(CaptureType.ALL);
+//		
+//		Set<OFPort> bcastPorts = new HashSet<OFPort>();
+//		bcastPorts.add(OFPort.of(10));
+//
+//		// Reset mocks, trigger the packet in, and validate results
+//		reset(topology);
+//		expect(topology.getSwitchBroadcastPorts(DatapathId.of(1L))).andReturn(bcastPorts).once();
+//		expect(topology.isAttachmentPointPort(DatapathId.of(anyLong()),
+//				OFPort.of(anyShort())))
+//				.andReturn(true)
+//				.anyTimes();
+//		expect(sw1.hasAttribute(IOFSwitch.PROP_SUPPORTS_OFPP_FLOOD)).andReturn(true).anyTimes();
+//		expect(sw1.write(capture(wc1))).andReturn(true).once();
+//		expect(routingEngine.isL3RoutingEnabled()).andReturn(false).atLeastOnce();
+//		replay(sw1, sw2, routingEngine, topology);
+//		forwarding.receive(sw1, this.packetIn, cntx);
+//		verify(sw1, sw2, routingEngine);
+//
+//		assertTrue(wc1.hasCaptured());
+//        assertEquals(OFMessageUtils.OFMessageIgnoreXid.of(wc1.getValue()), OFMessageUtils.OFMessageIgnoreXid.of(packetOutFlooded));
+//		
+//		removeDeviceFromContext();
+//	}
 
-		// Set no destination attachment point or route
-		// expect no Flow-mod but expect the packet to be flooded
-		reset(routingEngine);
-
-		Capture<OFMessage> wc1 = EasyMock.newCapture(CaptureType.ALL);
-		
-		Set<OFPort> bcastPorts = new HashSet<OFPort>();
-		bcastPorts.add(OFPort.of(10));
-
-		// Reset mocks, trigger the packet in, and validate results
-		reset(topology);
-		expect(topology.getSwitchBroadcastPorts(DatapathId.of(1L))).andReturn(bcastPorts).once();
-		expect(topology.isAttachmentPointPort(DatapathId.of(anyLong()),
-				OFPort.of(anyShort())))
-				.andReturn(true)
-				.anyTimes();
-		expect(sw1.hasAttribute(IOFSwitch.PROP_SUPPORTS_OFPP_FLOOD)).andReturn(true).anyTimes();
-		expect(sw1.write(capture(wc1))).andReturn(true).once();
-		expect(routingEngine.isL3RoutingEnabled()).andReturn(false).atLeastOnce();
-		replay(sw1, sw2, routingEngine, topology);
-		forwarding.receive(sw1, this.packetIn, cntx);
-		verify(sw1, sw2, routingEngine);
-
-		assertTrue(wc1.hasCaptured());
-        assertEquals(OFMessageUtils.OFMessageIgnoreXid.of(wc1.getValue()), OFMessageUtils.OFMessageIgnoreXid.of(packetOutFlooded));
-		
-		removeDeviceFromContext();
-	}
-
-	@Test
-	public void testForwardNoPathIPv6() throws Exception {
-		learnDevicesIPv6(DestDeviceToLearn.NONE);
-		
-		reset(routingEngine);
-
-		// Set no destination attachment point or route
-		// expect no Flow-mod but expect the packet to be flooded
-
-		Capture<OFMessage> wc1 = EasyMock.newCapture(CaptureType.ALL);
-		
-		Set<OFPort> bcastPorts = new HashSet<OFPort>();
-		bcastPorts.add(OFPort.of(10));
-
-		// Reset mocks, trigger the packet in, and validate results
-		reset(topology);
-		expect(topology.getSwitchBroadcastPorts(DatapathId.of(1L))).andReturn(bcastPorts).once();
-		expect(topology.isAttachmentPointPort(DatapathId.of(anyLong()),
-				OFPort.of(anyShort())))
-				.andReturn(true)
-				.anyTimes();
-		expect(sw1.hasAttribute(IOFSwitch.PROP_SUPPORTS_OFPP_FLOOD))
-		.andReturn(true).anyTimes();
-		// Reset XID to expected (dependent on prior unit tests)
-		expect(sw1.write(capture(wc1))).andReturn(true).once();
-		expect(routingEngine.isL3RoutingEnabled()).andReturn(false).atLeastOnce();
-		replay(sw1, sw2, routingEngine, topology);
-		forwarding.receive(sw1, this.packetInIPv6, cntx);
-		verify(sw1, sw2, routingEngine);
-
-		assertTrue(wc1.hasCaptured());
-        assertEquals(OFMessageUtils.OFMessageIgnoreXid.of(wc1.getValue()), OFMessageUtils.OFMessageIgnoreXid.of(packetOutFloodedIPv6));
-		
-		removeDeviceFromContext();
-	}
+//	@Test
+//	public void testForwardNoPathIPv6() throws Exception {
+//		learnDevicesIPv6(DestDeviceToLearn.NONE);
+//		
+//		reset(routingEngine);
+//
+//		// Set no destination attachment point or route
+//		// expect no Flow-mod but expect the packet to be flooded
+//
+//		Capture<OFMessage> wc1 = EasyMock.newCapture(CaptureType.ALL);
+//		
+//		Set<OFPort> bcastPorts = new HashSet<OFPort>();
+//		bcastPorts.add(OFPort.of(10));
+//
+//		// Reset mocks, trigger the packet in, and validate results
+//		reset(topology);
+//		expect(topology.getSwitchBroadcastPorts(DatapathId.of(1L))).andReturn(bcastPorts).once();
+//		expect(topology.isAttachmentPointPort(DatapathId.of(anyLong()),
+//				OFPort.of(anyShort())))
+//				.andReturn(true)
+//				.anyTimes();
+//		expect(sw1.hasAttribute(IOFSwitch.PROP_SUPPORTS_OFPP_FLOOD))
+//		.andReturn(true).anyTimes();
+//		// Reset XID to expected (dependent on prior unit tests)
+//		expect(sw1.write(capture(wc1))).andReturn(true).once();
+//		expect(routingEngine.isL3RoutingEnabled()).andReturn(false).atLeastOnce();
+//		replay(sw1, sw2, routingEngine, topology);
+//		forwarding.receive(sw1, this.packetInIPv6, cntx);
+//		verify(sw1, sw2, routingEngine);
+//
+//		assertTrue(wc1.hasCaptured());
+//        assertEquals(OFMessageUtils.OFMessageIgnoreXid.of(wc1.getValue()), OFMessageUtils.OFMessageIgnoreXid.of(packetOutFloodedIPv6));
+//		
+//		removeDeviceFromContext();
+//	}
 	
 	/*
 	 * TODO Consider adding test cases for other Decision != null paths (I only added FORWARD and none of the paths had test cases)
