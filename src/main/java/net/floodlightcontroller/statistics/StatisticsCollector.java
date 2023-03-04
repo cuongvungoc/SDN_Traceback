@@ -43,7 +43,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.primitives.UnsignedLong;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.kenai.jffi.Array;
 
 import net.floodlightcontroller.core.IOFSwitch;
 import net.floodlightcontroller.core.internal.IOFSwitchService;
@@ -55,6 +54,7 @@ import net.floodlightcontroller.core.types.NodePortTuple;
 import net.floodlightcontroller.debugcounter.IDebugCounter;
 import net.floodlightcontroller.debugcounter.IDebugCounterService;
 import net.floodlightcontroller.debugcounter.IDebugCounterService.MetaData;
+import net.floodlightcontroller.mactracker.MACTracker;
 import net.floodlightcontroller.restserver.IRestApiService;
 import net.floodlightcontroller.statistics.web.SwitchStatisticsWebRoutable;
 import net.floodlightcontroller.threadpool.IThreadPoolService;
@@ -71,7 +71,7 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 
 	private static boolean isEnabled = false;
 
-	private static int portStatsInterval = 10; /* could be set by REST API, so not final */
+	private static int portStatsInterval = 2; /* could be set by REST API, so not final */
 	private static int flowStatsInterval = 11;
 
 	private static ScheduledFuture<?> portStatsCollector;
@@ -90,98 +90,11 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 	private static final HashMap<Pair<Match,DatapathId>, FlowRuleStats> flowStats = new HashMap<>();
 	
 	private static final HashMap<NodePortTuple, PortDesc> portDesc = new HashMap<>();
+	
+	public int sequence = 0;
+	long elapsedTime;
+	long p1, p2;
 
-	/* Anomaly Tree */
-	public int  m = 7;					// number of BS
-	public int k = 6;					// number of eigenvalues need to record
-	public long[] C = new long[m];		// Current eigenvalue matrix (mx1)
-	public long[][] F = new long[m][k];	// m x k; all normal eigenvalues vector
-	public double[] alpha = new double[k];	// k x 1; weight vector
-	public double[] E = new double[m];		// m x 1; average eigenvalue in jth BS vector
-//	public int[] sigma = new int[m];	// m x 1 ; threshold vector
-	public double sum = k * (k + 1) * 1.0 / 2;
-//	ArrayList<Integer> tree = new ArrayList<Integer>(); // anomaly tree
-	public int tree[] = new int[m]; 
-	
-//	public String logTemp;
-	
-	/* Calculate max of array*/
-	public long max(long[] arr) {
-		long max = arr[0];
-		for(int i = 1; i < arr.length; i++) {
-			if(arr[i] > max)
-				max = arr[i];
-		}
-		return max;
-	}
-	
-	/* Calculate average vector E = F * alpha */
-	public void Average() {
-		for(int i = 0; i < k; i++) {
-			alpha[i] = i / sum;
-		}
-		for(int r = 0; r < m; r++) {
-			for(int c = 0; c < k; c ++) {
-				E[r] += F[r][c] * alpha[c];
-			}
-		}		
-	}
-	
-	/* Anomaly detect by threshold */
-	public void AnomalyTree(long[] C, int m, int K) {
-		boolean anomalyCheck = false;
-		// For each Base Station
-		for(int j = 0; j < m ; j ++) {
-			
-			/* Calculate threshold
-			 * If eq1 = true => add to anomaly tree
-			 * else update parameter
-			 * */
-			
-			double threshold = ((C[j] - E[j]) / (Math.sqrt(K - 1)));
-			
-			/* File log max(Sj) + threshold */
-			try {
-            	File fileT = new File("/home/cuong/FIL/threshold.csv");
-            	FileWriter fwT = new FileWriter(fileT, true);
-            	BufferedWriter bwT = new BufferedWriter(fwT);
-            	PrintWriter pwT = new PrintWriter(bwT);
-            	pwT.println(max(F[j]) + threshold);	                	
-            	pwT.close();
-            }catch(IOException ioe){
-            	System.out.println("Exception occurred:");
-                ioe.printStackTrace();
-            }
-			/* File log max(Sj) + threshold */
-			
-			if(max(F[j]) + threshold < C[j]) {
-				// Add BS to anomaly tree
-				tree[j] = 1;
-			}
-			else {
-				// Update vector S
-				tree[j] = 0;
-				for(int i = 0; i < K - 1; i++) {
-					F[j][i] = F[j][i +1];
-				}
-				F[j][K - 1] = C[j];
-			}
-		}
-		
-		for(int i = 0; i < m; i++) {
-			if(tree[i] != 0) {
-				anomalyCheck = true;	
-			}
-		}
-		
-		if(anomalyCheck) {
-			log.info("Anomaly Tree: " + Arrays.toString(tree));
-		}
-		else {
-			log.info("Normal Traffic !");
-		}
-	}	
-	/* Anomaly Tree */
 
 	/**
 	 * Run periodically to collect all port statistics. This only collects
@@ -206,12 +119,79 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 
 		@Override
 		public void run() {
+			log.info("Run Function call !");
+			
+//			elapsedTime += 2;
+//			log.info("" + elapsedTime);
+			//long timestamp = System.currentTimeMillis() / 1000;
+			//log.info("Time: " + timestamp);
 			Map<DatapathId, List<OFStatsReply>> replies = getSwitchStatistics(switchService.getAllSwitchDpids(), OFStatsType.PORT);
 			for (Entry<DatapathId, List<OFStatsReply>> e : replies.entrySet()) {
+//				try {
+//					File file = new File("/home/iot_team/Cuong_1sw_loop/e.txt");
+//					
+//					FileWriter fw = new FileWriter(file, true);
+//					BufferedWriter bw = new BufferedWriter(fw);
+//					PrintWriter pw = new PrintWriter(bw);
+//					pw.println(e);
+//					pw.close();
+//					}catch(IOException ioe){
+//						System.out.println("Exception occurred:");
+//						ioe.printStackTrace();
+//					}	
+				//log.info("First Loop");
 				for (OFStatsReply r : e.getValue()) {
+					
 					OFPortStatsReply psr = (OFPortStatsReply) r;
+					
+//					try {
+//					File file = new File("/home/iot_team/Cuong_1sw_loop/r.txt");
+//					
+//					FileWriter fw = new FileWriter(file, true);
+//					BufferedWriter bw = new BufferedWriter(fw);
+//					PrintWriter pw = new PrintWriter(bw);
+//					
+//					pw.println(r);
+//					pw.close();
+//					}catch(IOException ioe){
+//						System.out.println("Exception occurred:");
+//						ioe.printStackTrace();
+//					}	
+					//log.info("Second Loop");
 					for (OFPortStatsEntry pse : psr.getEntries()) {
+						
+//						try {
+//							File file = new File("/home/iot_team/Cuong_1sw_loop/pse.txt");
+//							
+//							FileWriter fw = new FileWriter(file, true);
+//							BufferedWriter bw = new BufferedWriter(fw);
+//							PrintWriter pw = new PrintWriter(bw);
+//							pw.println(pse);
+//							pw.close();
+//							}catch(IOException ioe){
+//								System.out.println("Exception occurred:");
+//								ioe.printStackTrace();
+//							}	
+//						
+//						//log.info("Third Loop");
 						NodePortTuple npt = new NodePortTuple(e.getKey(), pse.getPortNo());
+//						
+//						try {
+//							File file = new File("/home/iot_team/Cuong_1sw_loop/npt.txt");
+//							
+//							FileWriter fw = new FileWriter(file, true);
+//							BufferedWriter bw = new BufferedWriter(fw);
+//							PrintWriter pw = new PrintWriter(bw);
+//							pw.println("\n\n");
+//							pw.println(npt);
+//							pw.println("\n" + npt.getNodeId().getLong());
+//							pw.println("\n" + npt.getPortId().getPortNumber());
+//							pw.close();
+//							}catch(IOException ioe){
+//								System.out.println("Exception occurred:");
+//								ioe.printStackTrace();
+//							}	
+						
 						SwitchPortBandwidth spb;
 						if (portStats.containsKey(npt) || tentativePortStats.containsKey(npt)) {
 							if (portStats.containsKey(npt)) { /* update */
@@ -243,117 +223,66 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 							}
 							long speed = getSpeed(npt);
 							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1.0 / 1000000) / MILLIS_PER_SEC;
-//							double timeDifSec = ((System.nanoTime() - spb.getStartTime_ns()) * 1000000000) ;
+							//elapsedTime += timeDifSec;
+							
 							portStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), 
 									U64.ofRaw(speed),
 									U64.ofRaw(Math.round((rxBytesCounted.getValue() * BITS_PER_BYTE) / timeDifSec)),
 									U64.ofRaw(Math.round((txBytesCounted.getValue() * BITS_PER_BYTE) / timeDifSec)),
 									pse.getRxBytes(), pse.getTxBytes())
 									);
+							
 							// Cuong
-//			                try {
-//			                	File file = new File("/home/cuong/FIL/new_port_stats.csv");
-//			                	FileWriter fw = new FileWriter(file, true);
-//			                	BufferedWriter bw = new BufferedWriter(fw);
-//			                	PrintWriter pw = new PrintWriter(bw);
-//			                	log.info("Throughput counter is called !");
-////			                Add a new line to the file content
-////			                	pw.println("");
-//			                	pw.println(npt.toString() + "," + Long.toString(speed) + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec) + "," + Math.round((txBytesCounted.getValue() ) / timeDifSec));	                	
-//			                	pw.close();
-//			                }catch(IOException ioe){
-//			                	System.out.println("Exception occurred:");
-//			                    ioe.printStackTrace();
-//			                }	                	
-		                	
-			                try {
-			                	File file = new File("/home/cuong/FIL/port1_stats.csv");
-			                	File file2 = new File("/home/cuong/FIL/port2_stats.csv");
-			                	File file3 = new File("/home/cuong/FIL/port3_stats.csv");
-			                	File file4 = new File("/home/cuong/FIL/port4_stats.csv");
-			                	File file5 = new File("/home/cuong/FIL/port5_stats.csv");
-			                	File file6 = new File("/home/cuong/FIL/port6_stats.csv");
-			                	File file7 = new File("/home/cuong/FIL/port7_stats.csv");
-			                	
-			                	FileWriter fw = new FileWriter(file, true);
-			                	BufferedWriter bw = new BufferedWriter(fw);
-			                	PrintWriter pw = new PrintWriter(bw);
-			                	
-			                	FileWriter fw2 = new FileWriter(file2, true);
-			                	BufferedWriter bw2 = new BufferedWriter(fw2);
-			                	PrintWriter pw2 = new PrintWriter(bw2);
-			                	
-			                	FileWriter fw3 = new FileWriter(file3, true);
-			                	BufferedWriter bw3 = new BufferedWriter(fw3);
-			                	PrintWriter pw3 = new PrintWriter(bw3);
-			                	
-			                	FileWriter fw4 = new FileWriter(file4, true);
-			                	BufferedWriter bw4 = new BufferedWriter(fw4);
-			                	PrintWriter pw4 = new PrintWriter(bw4);
-			                	
-			                	FileWriter fw5 = new FileWriter(file5, true);
-			                	BufferedWriter bw5 = new BufferedWriter(fw5);
-			                	PrintWriter pw5 = new PrintWriter(bw5);
-			                	
-			                	FileWriter fw6 = new FileWriter(file6, true);
-			                	BufferedWriter bw6 = new BufferedWriter(fw6);
-			                	PrintWriter pw6 = new PrintWriter(bw6);
-			                	
-			                	FileWriter fw7 = new FileWriter(file7, true);
-			                	BufferedWriter bw7 = new BufferedWriter(fw7);
-			                	PrintWriter pw7 = new PrintWriter(bw7);
-			                	log.info("Throughput counter is called !");
-
-			                	if(npt.getPortId().getPortNumber() == 1) {
-			                		C[0] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-//			                		pw.println(npt.getPortId() + "," + Math.round((rxBytesCounted.getValue()) / timeDifSec));
-			                		pw.println(npt.getPortId() + "," + C[0]);
-			                		pw.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 2) {
-			                		C[1] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw2.println(npt.getPortId() + "," + C[1]);
-				                	pw2.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 3) {
-			                		C[2] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw3.println(npt.getPortId() + "," + C[2]);
-				                	pw3.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 4) {
-			                		C[3] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw4.println(npt.getPortId() + "," + C[3]);
-				                	pw4.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 5) {
-			                		C[4] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw5.println(npt.getPortId() + "," + C[4]);
-				                	pw5.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 6) {
-			                		C[5] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw6.println(npt.getPortId() + "," + C[5]);
-				                	pw6.close();
-			                	}
-			                	if(npt.getPortId().getPortNumber() == 7) {
-			                		C[6] = Math.round((rxBytesCounted.getValue()) / timeDifSec);
-			                		pw7.println(npt.getPortId() + "," + C[6]);
-				                	pw7.close();
-			                	}
-			                	
-			                	log.info("Vector C: " + Arrays.toString(C));
-			                	Average();
-			                	AnomalyTree(C, m, k);
-			                }catch(IOException ioe){
-			                	System.out.println("Exception occurred:");
-			                    ioe.printStackTrace();
-			                }	
-			                
-						} else { /* initialize */
+//							MACTracker m = new MACTracker();
+//							m.packetInCounter
+	             		                	
+							if(npt.getNodeId().getLong() == 1 /* add port 1*/) {
+								if (npt.getPortId().getPortNumber() == 1)
+								{
+									p1 = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+									
+//									try {
+//										File file = new File("/home/iot_team/Cuong_1sw_loop/time.txt");
+//										
+//										FileWriter fw = new FileWriter(file, true);
+//										BufferedWriter bw = new BufferedWriter(fw);
+//										PrintWriter pw = new PrintWriter(bw);
+//										pw.println("\n\n");
+//										pw.println(timeDifSec);
+//										pw.close();
+//										}catch(IOException ioe){
+//											System.out.println("Exception occurred:");
+//											ioe.printStackTrace();
+//										}	
+								
+									try {	
+										File file = new File("/home/iot_team/Cuong_1sw_loop/port_stats.csv");
+										
+										FileWriter fw = new FileWriter(file, true);
+										BufferedWriter bw = new BufferedWriter(fw);
+										PrintWriter pw = new PrintWriter(bw);
+										
+	
+	
+	//			                		else if (npt.getPortId().getPortNumber() == 2)
+	//			                		{
+	//			                			p2 = Math.round((rxBytesCounted.getValue()) / timeDifSec);
+	//			                		}
+										pw.println(p1 + "," + MACTracker.packetInCounter);
+										pw.close();
+									}catch(IOException ioe){
+										System.out.println("Exception occurred:");
+										ioe.printStackTrace();
+									}	
+								}
+							}
+							}
+						else { /* initialize */
 							tentativePortStats.put(npt, SwitchPortBandwidth.of(npt.getNodeId(), npt.getPortId(), U64.ZERO, U64.ZERO, U64.ZERO, pse.getRxBytes(), pse.getTxBytes()));
-//							log.info("TentaivePortStats: ",tentativePortStats);
-//							log.info("Port stats Collector called !");
+//							log.info("TentaticePort stats Collector called !");
+							
 						}
+			     
 					}
 				}
 			}
@@ -644,7 +573,6 @@ public class StatisticsCollector implements IFloodlightModule, IStatisticsServic
 		flowStatsCollector = threadPoolService.getScheduledExecutor().scheduleAtFixedRate(new FlowStatsCollector(), flowStatsInterval, flowStatsInterval, TimeUnit.SECONDS);
 		portDescCollector = threadPoolService.getScheduledExecutor().scheduleAtFixedRate(new PortDescCollector(), portStatsInterval, portStatsInterval, TimeUnit.SECONDS);
 		log.warn("Statistics collection thread(s) started");
-//		log.info("Flow Stats Collector:", getBandwidthConsumption());  // Fixed
 	}
 
 	/**

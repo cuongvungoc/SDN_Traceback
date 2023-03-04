@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: org.sdnplatform.sync.internal.SyncManagerTest
 -------------------------------------------------------------------------------
-Tests run: 13, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 9.209 sec
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 4, Time elapsed: 3.233 sec

@@ -25,6 +25,7 @@ public class OFConnectionCounters {
      */
     // Write Counters
     //
+    private final IDebugCounter ctrWriteAnomalyDetection;
     private final IDebugCounter ctrWriteHello;
     private final IDebugCounter ctrWriteError;
     private final IDebugCounter ctrWriteEchoRequest;
@@ -64,6 +65,7 @@ public class OFConnectionCounters {
 
     // Read Counters
     //
+    private final IDebugCounter ctrReadAnomalyDetection;
     private final IDebugCounter ctrReadHello;
     private final IDebugCounter ctrReadError;
     private final IDebugCounter ctrReadEchoRequest;
@@ -147,7 +149,13 @@ public class OFConnectionCounters {
                              hierarchy,
                              stringId,
                              "");
-
+        //Moi them vao
+        ctrWriteAnomalyDetection =
+                registerCounterLocal(counters,
+                                     hierarchy,
+                                     stringId,
+                                     OFType.ANOMALY_DETECTION.toString());
+        
         ctrWriteHello =
                 registerCounterLocal(counters,
                                      hierarchy,
@@ -343,6 +351,12 @@ public class OFConnectionCounters {
                              hierarchy,
                              stringId,
                              "");
+        //Moi them vao
+        ctrReadAnomalyDetection =
+                registerCounterLocal(counters,
+                                     hierarchy,
+                                     stringId,
+                                     OFType.ANOMALY_DETECTION.toString());
         ctrReadHello =
                 registerCounterLocal(counters,
                                      hierarchy,
@@ -689,7 +703,11 @@ public class OFConnectionCounters {
                 
             case CONTROLLER_STATUS:
             	ctrWriteControllerStatus.increment();
-    			break;   
+    			break;
+    		
+            case ANOMALY_DETECTION:
+            	ctrWriteAnomalyDetection.increment();
+            	break;
     			
             default:
                 logger.warn(ofm.getType().toString() +
@@ -847,7 +865,11 @@ public class OFConnectionCounters {
 
            case CONTROLLER_STATUS:
            		ctrReadControllerStatus.increment();
-           		break;   
+           		break;
+           		
+           case ANOMALY_DETECTION:
+	           	ctrReadAnomalyDetection.increment();
+	           	break;
                
            default:
                logger.warn(ofm.getType().toString() +

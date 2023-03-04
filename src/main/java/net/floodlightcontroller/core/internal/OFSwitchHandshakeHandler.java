@@ -26,6 +26,7 @@ import net.floodlightcontroller.core.SwitchDescription;
 import net.floodlightcontroller.core.internal.OFSwitchAppHandshakePlugin.PluginResultType;
 
 import org.projectfloodlight.openflow.protocol.OFActionType;
+import org.projectfloodlight.openflow.protocol.OFAnomalyDetection;
 import org.projectfloodlight.openflow.protocol.OFBadRequestCode;
 import org.projectfloodlight.openflow.protocol.OFBarrierReply;
 import org.projectfloodlight.openflow.protocol.OFBarrierRequest;
@@ -564,6 +565,14 @@ public class OFSwitchHandshakeHandler implements IOFConnectionListener {
 		void processOFPacketIn(OFPacketIn m) {
 			unhandledMessageReceived(m);
 		}
+		
+		// cuongvn
+		void processOFAnomalyDetection(OFAnomalyDetection m) {
+//			unhandledMessageReceived(m);
+//			illegalMessageReceived(m);
+			dispatchMessage(m);
+		}
+		//cuongvn
 
 		// By default add port status messages to a pending list
 		void processOFPortStatus(OFPortStatus m) {
@@ -861,6 +870,11 @@ public class OFSwitchHandshakeHandler implements IOFConnectionListener {
 			case BUNDLE_CONTROL:
 				processOFBundleCtrl((OFBundleCtrlMsg) m);
 				break;
+			// cuongvn
+			case ANOMALY_DETECTION:
+				processOFAnomalyDetection((OFAnomalyDetection) m);
+				break;
+			// cuongvn
 			default:
 				illegalMessageReceived(m);
 				break;

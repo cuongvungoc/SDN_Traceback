@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import net.floodlightcontroller.core.internal.OFConnectionCounters;
 
+import org.projectfloodlight.openflow.protocol.OFAnomalyDetection;
 import org.projectfloodlight.openflow.protocol.OFAsyncGetReply;
 import org.projectfloodlight.openflow.protocol.OFAsyncGetRequest;
 import org.projectfloodlight.openflow.protocol.OFAsyncSet;
@@ -101,6 +102,9 @@ public class OFConnectionCountersTest extends FloodlightTestCase {
                     found = true;
                 }
             }
+//            if(oft == OFType.ANOMALY_DETECTION) {
+//            	found = true;
+//            }
             assertEquals(true, found);
         }
     }
@@ -135,7 +139,7 @@ public class OFConnectionCountersTest extends FloodlightTestCase {
     }
 
     @Test
-    public void TestConnectionCounterUpdate() {
+    public void TestConnectionCounterUpdate() {    	
         // Barrier_Reply
         //
         factory = OFFactories.getFactory(OFVersion.OF_13);
@@ -306,6 +310,11 @@ public class OFConnectionCountersTest extends FloodlightTestCase {
         updateAndTestCounter(tableMod,OFType.TABLE_MOD.toString());
         
         factory = OFFactories.getFactory(OFVersion.OF_14);
+        
+    	//Anomaly_Detection
+    	//
+        OFAnomalyDetection anomalyDetection = factory.buildAnomalyDetection().build();
+        updateAndTestCounter(anomalyDetection,OFType.ANOMALY_DETECTION.toString());
         
         // Request Forward
         //
